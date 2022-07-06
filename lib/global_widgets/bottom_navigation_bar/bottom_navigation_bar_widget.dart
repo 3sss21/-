@@ -41,53 +41,91 @@ class _BottomNavigationWidgetState extends State<BottomNavigationBarWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: _widgetOptions.elementAt(_selectedIndex),
-      bottomNavigationBar: ClipRRect(
-        borderRadius: const BorderRadius.vertical(top: Radius.circular(10),),
-        child: Theme(
-          data: Theme.of(context).copyWith(
-            canvasColor: Colors.amber,
+      bottomNavigationBar: Container(
+        margin: EdgeInsets.only(bottom: 30),
+        decoration: const BoxDecoration(boxShadow: [
+          BoxShadow(
+            // color: Color(0xff17453B),
+            color: Colors.red,
+            offset: Offset(4, 10),
+            blurRadius: 10,
+            spreadRadius: 0,
+            blurStyle: BlurStyle.normal,
+          )
+        ]),
+        child: ClipRRect(
+          borderRadius: const BorderRadius.vertical(
+            top: Radius.circular(10),
           ),
-          child: BottomNavigationBar(
-            showUnselectedLabels: true,
-            // backgroundColor: Colors.amber,
-            selectedItemColor: Colors.white,
-            unselectedItemColor: Colors.red,
-            items: [
-              BottomNavigationBarItem(
-                icon: ImageIcon(
-                  AssetImage(
-                    IconImages.shopIcon,
+          child: Theme(
+            data: Theme.of(context).copyWith(
+              canvasColor: const Color(0xff17453B),
+            ),
+            child: BottomNavigationBar(
+              // selectedIconTheme: IconThemeData(color: Colors.white),
+              // unselectedIconTheme: IconThemeData(color: Colors.white),
+              showUnselectedLabels: false,
+              showSelectedLabels: false,
+
+              // enableFeedback: false,
+              selectedItemColor: Colors.white,
+              // unselectedItemColor: Color(0xffffffff),
+              iconSize: 40,
+              items: [
+                BottomNavigationBarItem(
+                  activeIcon: ImageIcon(
+                    AssetImage(IconImages.shopIcon),
+                    color: Colors.amber,
                   ),
-                ),
-                label: '',
-              ),
-              BottomNavigationBarItem(
-                icon: ImageIcon(
-                  AssetImage(
-                    IconImages.balanceIcon,
+                  icon: ImageIcon(
+                    AssetImage(
+                      IconImages.shopIcon,
+                    ),
                   ),
+                  label: '',
                 ),
-                label: '',
-              ),
-              BottomNavigationBarItem(
-                icon: ImageIcon(
-                  AssetImage(
-                    IconImages.qrCodeIcon,
+                BottomNavigationBarItem(
+                  activeIcon: ImageIcon(
+                    AssetImage(IconImages.shopIcon),
+                    color: Colors.amber,
                   ),
-                ),
-                label: '',
-              ),
-              BottomNavigationBarItem(
-                icon: ImageIcon(
-                  AssetImage(
-                    IconImages.profileIcon,
+                  icon: ImageIcon(
+                    AssetImage(
+                      IconImages.balanceIcon,
+                    ),
                   ),
+                  label: '',
                 ),
-                label: '',
-              ),
-            ],
-            currentIndex: _selectedIndex,
-            onTap: _onItemTapped,
+                BottomNavigationBarItem(
+                  activeIcon: ImageIcon(
+                    AssetImage(IconImages.shopIcon),
+                    color: Colors.white,
+                  ),
+                  icon: ImageIcon(
+                    AssetImage(
+                      IconImages.qrCodeIcon,
+                    ),
+                    color: Colors.white,
+                  ),
+                  label: '',
+                ),
+                BottomNavigationBarItem(
+                  activeIcon: ImageIcon(
+                    AssetImage(IconImages.shopIcon),
+                    color: Colors.amber,
+                  ),
+                  icon: ImageIcon(
+                    AssetImage(
+                      IconImages.profileIcon,
+                    ),
+                  ),
+                  label: '',
+                ),
+              ],
+              type: BottomNavigationBarType.fixed,
+              currentIndex: _selectedIndex,
+              onTap: _onItemTapped,
+            ),
           ),
         ),
       ),
